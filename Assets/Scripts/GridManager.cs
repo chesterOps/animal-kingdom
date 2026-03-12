@@ -44,13 +44,12 @@ public class GridManager : MonoBehaviour
 
         switch (direction)
         {
-            case 0: newX += range; break; // right
-            case 1: newX -= range; break; // left
-            case 2: newY += range; break; // up
-            case 3: newY -= range; break; // down
+            case 0: newX += range; break;
+            case 1: newX -= range; break;
+            case 2: newY += range; break;
+            case 3: newY -= range; break;
         }
 
-        // Make sure the new position stays inside the grid
         newX = Mathf.Clamp(newX, 0, _gridWidth - 1);
         newY = Mathf.Clamp(newY, 0, _gridHeight - 1);
 
