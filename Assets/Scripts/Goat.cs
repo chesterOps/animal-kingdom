@@ -21,11 +21,12 @@ public class Goat : Animal
         transform.localScale *= 0.5f;
     }
 
-    public override void TakeTurn()
+
+    protected override void AfterMove()
     {
+        base.AfterMove();
         EatGrass();
         Reproduce();
-        base.TakeTurn();
     }
 
     void EatGrass()
@@ -33,7 +34,7 @@ public class Goat : Animal
         if (CurrentTile != null && CurrentTile.HasGrass)
         {
             CurrentTile.RemoveGrass();
-            _lifeTimer += 2;
+            ResetLifeSpan();
         }
     }
 

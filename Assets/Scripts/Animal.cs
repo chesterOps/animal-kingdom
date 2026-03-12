@@ -3,26 +3,33 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
+    private static WaitForSeconds _waitForSeconds3_0 = new(3.0f);
     private static WaitForSeconds _waitForSeconds5_0 = new(5.0f);
     public Tile CurrentTile;
-    [SerializeField] protected int _lifeTimer;
+    [SerializeField] protected int _currentLifeSpan;
     [SerializeField] protected int _movementRange;
 
     [SerializeField] private float _movementSpeed;
 
     private Vector3 targetPosition;
-
+    protected int _lifeSpan;
     protected GridManager _gridManager;
 
     protected virtual void Awake()
     {
         _gridManager = FindAnyObjectByType<GridManager>();
+        _lifeSpan = _currentLifeSpan;
+    }
 
+    protected void ResetLifeSpan()
+    {
+        _currentLifeSpan = _lifeSpan;
     }
 
     protected virtual void Start()
     {
-        StartCoroutine(TakeTurnCoroutine());
+        StartCoroutine(DecreaseLifeSpan());
+        StartCoroutine(MoveCoroutine());
     }
 
     public virtual void SetPosition(Tile tile)
@@ -44,24 +51,36 @@ public class Animal : MonoBehaviour
     }
 
 
-    public virtual void TakeTurn()
+    IEnumerator DecreaseLifeSpan()
     {
-        _lifeTimer--;
-        if (_lifeTimer <= 0)
+        while (_currentLifeSpan > 0)
         {
-            Die();
-            return;
+            yield return _waitForSeconds3_0;
+            _currentLifeSpan--;
+            if (_currentLifeSpan == 0)
+            {
+                Die();
+            }
         }
-        Move();
     }
 
-    IEnumerator TakeTurnCoroutine()
+
+
+
+    IEnumerator MoveCoroutine()
     {
-        while (_lifeTimer > 0 && CurrentTile != null)
+        while (_currentLifeSpan > 0 && CurrentTile != null)
         {
-            yield return _waitForSeconds5_0;
-            TakeTurn();
+            yield return _waitForSeconds3_0;
+            Move();
+            yield return _waitForSeconds3_0;
+            AfterMove();
         }
+    }
+
+    protected virtual void AfterMove()
+    {
+
     }
 
     protected virtual void Move()
