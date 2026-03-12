@@ -38,11 +38,11 @@ public class Goat : Animal
         }
     }
 
-    bool FindOppositeGender(Tile tile)
+    bool FindMaleGoat(Tile tile)
     {
         List<Animal> animals = tile.animalsOnTile;
         List<Goat> goats = animals.OfType<Goat>().ToList();
-        Goat goat = goats.Find(g => (g.Gender != Gender) && !g.IsChild);
+        Goat goat = goats.Find(g => (g.Gender == "male") && !g.IsChild);
         if (goat) return true;
         return false;
     }
@@ -51,8 +51,9 @@ public class Goat : Animal
     {
         if (CurrentTile != null && !IsChild)
         {
-            bool hasOppositeGender = FindOppositeGender(CurrentTile);
-            if (hasOppositeGender)
+            bool isFemale = Gender == "female";
+            bool hasMaleGoat = FindMaleGoat(CurrentTile);
+            if (hasMaleGoat && isFemale)
             {
                 GameObject goatObject = ObjectPool.Instance.GetGoat();
                 Goat childGoat = goatObject.GetComponent<Goat>();
