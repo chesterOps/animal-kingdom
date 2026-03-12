@@ -105,5 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Goat
   CurrentTile: {fileID: 0}
-  LifeTimer: 10
-  movementRange: 1
+  _lifeTimer: 4
+  _movementRange: 1
+  _movementSpeed: 1
+  Gender: 
+  IsAdult: 0
+  _goatprefab: {fileID: 60623874982737441}

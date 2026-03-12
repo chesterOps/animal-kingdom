@@ -5,9 +5,10 @@ public class Animal : MonoBehaviour
 {
     private static WaitForSeconds _waitForSeconds5_0 = new(5.0f);
     public Tile CurrentTile;
-    public int LifeTimer = 4;
-    public int movementRange = 1;
-    public float movementSpeed = 0.5f;
+    [SerializeField] protected int _lifeTimer;
+    [SerializeField] protected int _movementRange;
+
+    [SerializeField] private float _movementSpeed;
 
     private Vector3 targetPosition;
 
@@ -16,16 +17,20 @@ public class Animal : MonoBehaviour
     protected virtual void Awake()
     {
         _gridManager = FindAnyObjectByType<GridManager>();
+
     }
 
     protected virtual void Start()
     {
-        Tile tile = _gridManager.GetRandomTile();
+        StartCoroutine(TakeTurnCoroutine());
+    }
+
+    public virtual void SetPosition(Tile tile)
+    {
         tile.AddAnimal(this);
         CurrentTile = tile;
         transform.position = tile.transform.position;
         targetPosition = tile.transform.position;
-        StartCoroutine(TakeTurnCoroutine());
     }
 
     void Update()
@@ -33,7 +38,7 @@ public class Animal : MonoBehaviour
         transform.position = Vector3.MoveTowards(
             transform.position,
             targetPosition,
-            movementSpeed * Time.deltaTime
+            _movementSpeed * Time.deltaTime
         );
 
     }
@@ -41,8 +46,8 @@ public class Animal : MonoBehaviour
 
     public virtual void TakeTurn()
     {
-        LifeTimer--;
-        if (LifeTimer <= 0)
+        _lifeTimer--;
+        if (_lifeTimer <= 0)
         {
             Die();
             return;
@@ -52,7 +57,7 @@ public class Animal : MonoBehaviour
 
     IEnumerator TakeTurnCoroutine()
     {
-        while (LifeTimer > 0)
+        while (_lifeTimer > 0 && CurrentTile != null)
         {
             yield return _waitForSeconds5_0;
             TakeTurn();
@@ -61,7 +66,7 @@ public class Animal : MonoBehaviour
 
     protected virtual void Move()
     {
-        Tile newTile = _gridManager.GetRandomAdjacentTile(CurrentTile, movementRange);
+        Tile newTile = _gridManager.GetRandomAdjacentTile(CurrentTile, _movementRange);
         if (newTile != null)
         {
             MoveToTile(newTile);
@@ -87,7 +92,7 @@ public class Animal : MonoBehaviour
         {
             CurrentTile.RemoveAnimal(this);
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }
