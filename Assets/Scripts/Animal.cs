@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Animal : MonoBehaviour
 {
     private static WaitForSeconds _waitForSeconds5_0 = new(5.0f);
     public Tile CurrentTile;
-    public int LifeTimer = 10;
+    public int LifeTimer = 4;
     public int movementRange = 1;
     public float movementSpeed = 0.5f;
 
@@ -31,7 +30,6 @@ public class Animal : MonoBehaviour
 
     void Update()
     {
-
         transform.position = Vector3.MoveTowards(
             transform.position,
             targetPosition,
