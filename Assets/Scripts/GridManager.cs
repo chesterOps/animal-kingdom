@@ -26,10 +26,10 @@ public class GridManager : MonoBehaviour
                 Vector3 spawnPos = new((x - xOffset) * _tileSpacing, (y - yOffset) * _tileSpacing);
                 GameObject spawnedTile = Instantiate(_tilePrefab, spawnPos, Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
+                spawnedTile.transform.parent = transform;
                 Tile newTile = spawnedTile.GetComponent<Tile>();
                 newTile.Initialize(x, y);
                 _tiles[x, y] = newTile;
-
             }
         }
 
