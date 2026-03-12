@@ -27,7 +27,10 @@ public class Tile : MonoBehaviour
 
     public void RemoveAnimal(Animal animal)
     {
-        animalsOnTile.Remove(animal);
+        if (animalsOnTile.Contains(animal))
+        {
+            animalsOnTile.Remove(animal);
+        }
     }
 
     public void ReplenishGrass()

@@ -18,7 +18,7 @@ public class Goat : Animal
         if (CurrentTile != null)
         {
             CurrentTile.RemoveGrass();
-            LifeTimer += 3;
+            LifeTimer += 2;
         }
     }
 

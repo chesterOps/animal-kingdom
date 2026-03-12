@@ -79,7 +79,6 @@ public class Animal : MonoBehaviour
 
         CurrentTile = newTile;
         newTile.AddAnimal(this);
-
         targetPosition = newTile.transform.position;
     }
 
