@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5951227430347764539}
   - component: {fileID: 1771165467398339926}
   - component: {fileID: 2325111228936823488}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Goat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -909877125
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}

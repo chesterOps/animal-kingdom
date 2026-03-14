@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1255791443
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7932798033344189819, guid: f6b16b221b347dc41a56f90a7f0c0c91, type: 3}
@@ -104,3 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e6b191d8a982344a9fbb5202798dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
+  X: 0
+  Y: 0
+  animalsOnTile: []

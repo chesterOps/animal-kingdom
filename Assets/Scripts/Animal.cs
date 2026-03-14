@@ -105,7 +105,7 @@ public class Animal : MonoBehaviour
     }
 
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         if (CurrentTile != null)
         {
