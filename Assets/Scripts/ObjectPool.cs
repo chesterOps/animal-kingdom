@@ -5,12 +5,15 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool Instance;
     private List<GameObject> _goats = new();
+    private List<GameObject> _lions = new();
     private GridManager _gridManager;
 
 
     [SerializeField] private int _goatSpawnCount;
+    [SerializeField] private int _lionSpawnCount;
     [SerializeField] private GameObject _goatPrefab;
 
+    [SerializeField] private GameObject _lionPrefab;
     void Awake()
     {
         _gridManager = FindAnyObjectByType<GridManager>();
@@ -25,33 +28,48 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < _goatSpawnCount; i++)
         {
             Tile randomTile = _gridManager.GetRandomTile();
-            GameObject goatObject = CreateGoat();
+            GameObject goatObject = CreateAnimal(_goatPrefab, _goats);
             Goat goat = goatObject.GetComponent<Goat>();
             goat.Initialize();
+            goat.SetPosition(randomTile);
+        }
+
+        for (int i = 0; i < _lionSpawnCount; i++)
+        {
+            Tile randomTile = _gridManager.GetRandomTile();
+            GameObject lionObject = CreateAnimal(_lionPrefab, _lions);
+            Lion goat = lionObject.GetComponent<Lion>();
             goat.SetPosition(randomTile);
         }
     }
 
 
-    GameObject CreateGoat()
+    GameObject CreateAnimal(GameObject prefab, List<GameObject> container)
     {
-        GameObject goatObject = Instantiate(_goatPrefab);
-        goatObject.transform.parent = gameObject.transform;
-        _goats.Add(goatObject);
-        return goatObject;
+        GameObject animalObject = Instantiate(prefab);
+        animalObject.transform.parent = gameObject.transform;
+        container.Add(animalObject);
+        return animalObject;
+    }
+
+    public GameObject GetAnimal(GameObject prefab, List<GameObject> container)
+    {
+        for (int i = 0; i < container.Count; i++)
+        {
+            if (!container[i].activeInHierarchy)
+            {
+                return container[i];
+            }
+        }
+
+        GameObject newAnimal = CreateAnimal(prefab, container);
+        return newAnimal;
     }
 
     public GameObject GetGoat()
     {
-        for (int i = 0; i < _goats.Count; i++)
-        {
-            if (!_goats[i].activeInHierarchy)
-            {
-                return _goats[i];
-            }
-        }
-
-        GameObject newGoat = CreateGoat();
-        return newGoat;
+        return GetAnimal(_goatPrefab, _goats);
     }
+
+
 }

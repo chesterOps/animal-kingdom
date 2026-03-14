@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3229214780926654379}
   - component: {fileID: 7140497764812807582}
   - component: {fileID: 4076306732997506166}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Lion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -909877125
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
@@ -104,3 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752f2400b029f494a9b851420f0b5ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lion
+  CurrentTile: {fileID: 0}
+  _currentLifeSpan: 30
+  _movementRange: 2
+  _movementSpeed: 1
