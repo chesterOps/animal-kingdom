@@ -6,11 +6,12 @@ public class Lion : Animal
     protected override void AfterMove()
     {
         base.AfterMove();
-        EatGoat();
+        Eat();
     }
 
-    void EatGoat()
+    protected override void Eat()
     {
+        base.Eat();
         if (CurrentTile != null)
         {
             Goat goat = FindGoat();

@@ -4,12 +4,18 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     private static WaitForSeconds _waitForSeconds3_0 = new(3.0f);
-    private static WaitForSeconds _waitForSeconds5_0 = new(5.0f);
     public Tile CurrentTile;
     [SerializeField] protected int _currentLifeSpan;
     [SerializeField] protected int _movementRange;
 
     [SerializeField] private float _movementSpeed;
+
+    private static readonly float[] _directionAngles ={
+        -90f,
+        90f,
+        0,
+        180f
+    };
 
     private Vector3 targetPosition;
     protected int _lifeSpan;
@@ -31,6 +37,8 @@ public class Animal : MonoBehaviour
         StartCoroutine(DecreaseLifeSpan());
         StartCoroutine(MoveCoroutine());
     }
+
+
 
     public virtual void SetPosition(Tile tile)
     {
@@ -83,13 +91,27 @@ public class Animal : MonoBehaviour
 
     }
 
+    protected virtual void Eat()
+    {
+
+    }
+
     protected virtual void Move()
     {
-        Tile newTile = _gridManager.GetRandomAdjacentTile(CurrentTile, _movementRange);
+        var result = _gridManager.GetRandomAdjacentTile(CurrentTile, _movementRange);
+        int direction = result.direction;
+        Tile newTile = result.tile;
         if (newTile != null)
         {
+            RotateTowardsDirection(direction);
             MoveToTile(newTile);
         }
+    }
+
+    protected void RotateTowardsDirection(int direction)
+    {
+
+        transform.rotation = Quaternion.Euler(0f, 0f, _directionAngles[direction]);
     }
 
     protected void MoveToTile(Tile newTile)

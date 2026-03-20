@@ -35,7 +35,7 @@ public class GridManager : MonoBehaviour
 
     }
 
-    public Tile GetRandomAdjacentTile(Tile tile, int range)
+    public (int direction, Tile tile) GetRandomAdjacentTile(Tile tile, int range)
     {
         int newX = tile.X;
         int newY = tile.Y;
@@ -53,7 +53,7 @@ public class GridManager : MonoBehaviour
         newX = Mathf.Clamp(newX, 0, _gridWidth - 1);
         newY = Mathf.Clamp(newY, 0, _gridHeight - 1);
 
-        return _tiles[newX, newY];
+        return (direction, _tiles[newX, newY]);
     }
 
     public Tile GetRandomTile()
