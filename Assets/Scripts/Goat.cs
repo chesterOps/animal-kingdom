@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Goat : Animal
 {
-    public string Gender;
+
     private bool IsChild = false;
+
+    public enum Gender
+    {
+        Male,
+        Female, Count
+    }
+
+    public Gender Sex;
 
     public void Initialize()
     {
-        string[] genders = { "male", "female" };
-        int index = Random.Range(0, genders.Length);
-        Gender = genders[index];
+        int index = Random.Range(0, (int)Gender.Count);
+        Sex = (Gender)index;
     }
 
 
@@ -25,12 +32,13 @@ public class Goat : Animal
     protected override void AfterMove()
     {
         base.AfterMove();
-        EatGrass();
+        Eat();
         Reproduce();
     }
 
-    void EatGrass()
+    protected override void Eat()
     {
+        base.Eat();
         if (CurrentTile != null && CurrentTile.HasGrass)
         {
             CurrentTile.RemoveGrass();
@@ -38,11 +46,12 @@ public class Goat : Animal
         }
     }
 
+
     bool FindMaleGoat(Tile tile)
     {
         List<Animal> animals = tile.animalsOnTile;
         List<Goat> goats = animals.OfType<Goat>().ToList();
-        Goat goat = goats.Find(g => (g.Gender == "male") && !g.IsChild);
+        Goat goat = goats.Find(g => (g.Sex == Gender.Male) && !g.IsChild);
         if (goat) return true;
         return false;
     }
@@ -51,7 +60,7 @@ public class Goat : Animal
     {
         if (CurrentTile != null && !IsChild)
         {
-            bool isFemale = Gender == "female";
+            bool isFemale = Sex == Gender.Female;
             bool hasMaleGoat = FindMaleGoat(CurrentTile);
             if (hasMaleGoat && isFemale)
             {
