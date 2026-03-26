@@ -25,7 +25,7 @@ public class Goat : Animal
     public void SetAsChild()
     {
         IsChild = true;
-        transform.localScale *= 0.5f;
+        transform.localScale *= 0.8f;
     }
 
 
