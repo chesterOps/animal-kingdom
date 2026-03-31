@@ -106,4 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tile
   X: 0
   Y: 0
+  _grass: {fileID: 7932798033344189819, guid: f6b16b221b347dc41a56f90a7f0c0c91, type: 3}
+  _dirt: {fileID: 5634026908348037240, guid: fd335f5f7908ee947a22d56f6e72b114, type: 3}
   animalsOnTile: []

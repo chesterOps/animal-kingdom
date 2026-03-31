@@ -8,7 +8,9 @@ public class Tile : MonoBehaviour
     public int Y;
 
     private SpriteRenderer _spriteRenderer;
-    private Sprite _grass;
+
+    [SerializeField] private Sprite _grass;
+    [SerializeField] private Sprite _dirt;
 
 
     public List<Animal> animalsOnTile = new();
@@ -18,7 +20,7 @@ public class Tile : MonoBehaviour
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _grass = _spriteRenderer.sprite;
+        _spriteRenderer.sprite = _grass;
     }
 
     public void Initialize(int x, int y)
@@ -51,7 +53,7 @@ public class Tile : MonoBehaviour
 
     public void RemoveGrass()
     {
-        _spriteRenderer.sprite = null;
+        _spriteRenderer.sprite = _dirt;
         HasGrass = false;
     }
 }
