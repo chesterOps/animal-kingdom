@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Goat
   CurrentTile: {fileID: 0}
-  _currentLifeSpan: 20
+  _currentLifeSpan: 30
   _movementRange: 1
   _movementSpeed: 1
   Sex: 0
