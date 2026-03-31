@@ -10,14 +10,8 @@ public class Animal : MonoBehaviour
 
     [SerializeField] private float _movementSpeed;
 
-    private static readonly float[] _directionAngles ={
-        -90f,
-        90f,
-        0,
-        180f
-    };
 
-    private Vector3 targetPosition;
+    protected Vector3 targetPosition;
     protected int _lifeSpan;
     protected GridManager _gridManager;
 
@@ -67,6 +61,7 @@ public class Animal : MonoBehaviour
             _currentLifeSpan--;
             if (_currentLifeSpan == 0)
             {
+                CurrentTile.ReplenishGrass();
                 Die();
             }
         }
@@ -98,21 +93,15 @@ public class Animal : MonoBehaviour
 
     protected virtual void Move()
     {
-        var result = _gridManager.GetRandomAdjacentTile(CurrentTile, _movementRange);
-        int direction = result.direction;
-        Tile newTile = result.tile;
-        if (newTile != null)
+        var (direction, tile) = _gridManager.GetRandomAdjacentTile(CurrentTile, _movementRange);
+
+        if (tile != null)
         {
-            RotateTowardsDirection(direction);
-            MoveToTile(newTile);
+            MoveToTile(tile);
         }
     }
 
-    protected void RotateTowardsDirection(int direction)
-    {
 
-        transform.rotation = Quaternion.Euler(0f, 0f, _directionAngles[direction]);
-    }
 
     protected void MoveToTile(Tile newTile)
     {
