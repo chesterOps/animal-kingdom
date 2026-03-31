@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3229214780926654379}
   - component: {fileID: 7140497764812807582}
   - component: {fileID: 4076306732997506166}
+  - component: {fileID: 3792601797785907546}
   m_Layer: 0
   m_Name: Lion
   m_TagString: Untagged
@@ -108,3 +109,25 @@ MonoBehaviour:
   _currentLifeSpan: 30
   _movementRange: 2
   _movementSpeed: 1
+--- !u!95 &3792601797785907546
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6555319177704276533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fb0ac0342d53f84aa58a80de2bbe43d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
