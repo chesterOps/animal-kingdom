@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5951227430347764539}
   - component: {fileID: 1771165467398339926}
   - component: {fileID: 2325111228936823488}
+  - component: {fileID: 7178471814807918159}
   m_Layer: 0
   m_Name: Goat
   m_TagString: Untagged
@@ -109,3 +110,25 @@ MonoBehaviour:
   _movementRange: 1
   _movementSpeed: 1
   Sex: 0
+--- !u!95 &7178471814807918159
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60623874982737441}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 53a0ff5506a5def4187131e65256e864, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

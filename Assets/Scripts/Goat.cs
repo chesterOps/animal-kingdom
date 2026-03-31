@@ -34,7 +34,6 @@ public class Goat : Animal
         base.AfterMove();
         Eat();
         Reproduce();
-
     }
 
     protected override void Eat()
