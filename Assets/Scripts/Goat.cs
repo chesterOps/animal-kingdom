@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Goat : Animal
 {
-
+    private static WaitForSeconds _waitForSeconds10 = new(10f);
     private bool IsChild = false;
 
     public enum Gender
@@ -56,6 +57,12 @@ public class Goat : Animal
         return false;
     }
 
+    protected IEnumerator GrowUpRoutine()
+    {
+        yield return _waitForSeconds10;
+        GrowUp();
+    }
+
     void Reproduce()
     {
         if (CurrentTile != null && !IsChild)
@@ -68,8 +75,15 @@ public class Goat : Animal
                 Goat childGoat = goatObject.GetComponent<Goat>();
                 childGoat.SetAsChild();
                 childGoat.SetPosition(CurrentTile);
+                StartCoroutine(childGoat.GrowUpRoutine());
             }
         }
+    }
+
+    void GrowUp()
+    {
+        IsChild = false;
+        transform.localScale /= 0.8f;
     }
 
 }

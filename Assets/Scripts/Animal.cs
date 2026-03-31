@@ -114,10 +114,12 @@ public class Animal : MonoBehaviour
         newTile.AddAnimal(this);
         targetPosition = newTile.transform.position;
         AnimateMovement(direction);
+
     }
 
     protected void AnimateMovement(int direction)
     {
+
         _animator.SetTrigger($"{direction}");
     }
 
