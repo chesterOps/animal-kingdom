@@ -1,12 +1,10 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Goat : Animal
 {
-    private static WaitForSeconds _waitForSeconds10 = new(10f);
-    private bool IsChild = false;
 
     public enum Gender
     {
@@ -16,17 +14,9 @@ public class Goat : Animal
 
     public Gender Sex;
 
-    public void Initialize()
+    public void Initialize(int gender)
     {
-        int index = Random.Range(0, (int)Gender.Count);
-        Sex = (Gender)index;
-    }
-
-
-    public void SetAsChild()
-    {
-        IsChild = true;
-        transform.localScale *= 0.8f;
+        Sex = (Gender)gender;
     }
 
 
@@ -52,20 +42,16 @@ public class Goat : Animal
     {
         List<Animal> animals = tile.animalsOnTile;
         List<Goat> goats = animals.OfType<Goat>().ToList();
-        Goat goat = goats.Find(g => (g.Sex == Gender.Male) && !g.IsChild);
+        Goat goat = goats.Find(g => g.Sex == Gender.Male);
         if (goat) return true;
         return false;
     }
 
-    protected IEnumerator GrowUpRoutine()
-    {
-        yield return _waitForSeconds10;
-        GrowUp();
-    }
+
 
     void Reproduce()
     {
-        if (CurrentTile != null && !IsChild)
+        if (CurrentTile != null)
         {
             bool isFemale = Sex == Gender.Female;
             bool hasMaleGoat = FindMaleGoat(CurrentTile);
@@ -73,17 +59,8 @@ public class Goat : Animal
             {
                 GameObject goatObject = ObjectPool.Instance.GetGoat();
                 Goat childGoat = goatObject.GetComponent<Goat>();
-                childGoat.SetAsChild();
                 childGoat.SetPosition(CurrentTile);
-                StartCoroutine(childGoat.GrowUpRoutine());
             }
         }
     }
-
-    void GrowUp()
-    {
-        IsChild = false;
-        transform.localScale /= 0.8f;
-    }
-
 }

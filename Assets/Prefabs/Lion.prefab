@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lion
   CurrentTile: {fileID: 0}
-  _currentLifeSpan: 30
+  _currentLifeSpan: 50
   _movementRange: 2
   _movementSpeed: 1
 --- !u!95 &3792601797785907546
