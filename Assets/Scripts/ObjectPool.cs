@@ -27,10 +27,11 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < _goatSpawnCount; i++)
         {
+            bool isMale = i % 2 == 0;
             Tile randomTile = _gridManager.GetRandomTile();
             GameObject goatObject = CreateAnimal(_goatPrefab, _goats);
             Goat goat = goatObject.GetComponent<Goat>();
-            goat.Initialize();
+            goat.Initialize(isMale ? 0 : 1);
             goat.SetPosition(randomTile);
         }
 

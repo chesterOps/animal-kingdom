@@ -523,8 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d0d5e79e1f17d4da4b191e34dadbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
-  _goatSpawnCount: 12
-  _lionSpawnCount: 6
+  _goatSpawnCount: 16
+  _lionSpawnCount: 4
   _goatPrefab: {fileID: 60623874982737441, guid: d04e7dd5b3f362e4cbea29159de3d512, type: 3}
   _lionPrefab: {fileID: 6555319177704276533, guid: 6263c5d76910b45499ffdafe64e32b9d, type: 3}
 --- !u!1660057539 &9223372036854775807
