@@ -50,8 +50,10 @@ public class GridManager : MonoBehaviour
             case 3: newY -= range; break;
         }
 
-        newX = Mathf.Clamp(newX, 0, _gridWidth - 1);
-        newY = Mathf.Clamp(newY, 0, _gridHeight - 1);
+        if (newX < 0 || newX >= _gridWidth || newY < 0 || newY >= _gridHeight)
+        {
+            return (direction, tile);
+        }
 
         return (direction, _tiles[newX, newY]);
     }

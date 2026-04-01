@@ -105,16 +105,18 @@ public class Animal : MonoBehaviour
 
     protected void MoveToTile(Tile newTile, int direction)
     {
-        if (CurrentTile != null)
+        if (newTile.transform.position != CurrentTile.transform.position)
         {
-            CurrentTile.RemoveAnimal(this);
+            if (CurrentTile != null)
+            {
+                CurrentTile.RemoveAnimal(this);
+            }
+
+            CurrentTile = newTile;
+            newTile.AddAnimal(this);
+            targetPosition = newTile.transform.position;
+            AnimateMovement(direction);
         }
-
-        CurrentTile = newTile;
-        newTile.AddAnimal(this);
-        targetPosition = newTile.transform.position;
-        AnimateMovement(direction);
-
     }
 
     protected void AnimateMovement(int direction)
@@ -132,6 +134,4 @@ public class Animal : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-
-
 }
