@@ -57,9 +57,12 @@ public class Goat : Animal
             bool hasMaleGoat = FindMaleGoat(CurrentTile);
             if (hasMaleGoat && isFemale)
             {
-                GameObject goatObject = ObjectPool.Instance.GetGoat();
-                Goat childGoat = goatObject.GetComponent<Goat>();
-                childGoat.SetPosition(CurrentTile);
+                for (int i = 0; i < 2; i++)
+                {
+                    GameObject goatObject = ObjectPool.Instance.GetGoat();
+                    Goat childGoat = goatObject.GetComponent<Goat>();
+                    childGoat.SetPosition(CurrentTile);
+                }
             }
         }
     }

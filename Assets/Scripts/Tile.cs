@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Tile : MonoBehaviour
 
     [SerializeField] private Sprite _grass;
     [SerializeField] private Sprite _dirt;
+    [SerializeField] private float _replenishGrassTimer;
 
 
     public List<Animal> animalsOnTile = new();
@@ -45,15 +47,26 @@ public class Tile : MonoBehaviour
         }
     }
 
+    IEnumerator ReplenishGrassRoutine()
+    {
+        yield return new WaitForSeconds(_replenishGrassTimer);
+        ReplenishGrass();
+    }
+
+
     public void ReplenishGrass()
     {
-        HasGrass = true;
-        _spriteRenderer.sprite = _grass;
+        if (animalsOnTile.Count == 0)
+        {
+            HasGrass = true;
+            _spriteRenderer.sprite = _grass;
+        }
     }
 
     public void RemoveGrass()
     {
         _spriteRenderer.sprite = _dirt;
         HasGrass = false;
+        StartCoroutine(ReplenishGrassRoutine());
     }
 }
