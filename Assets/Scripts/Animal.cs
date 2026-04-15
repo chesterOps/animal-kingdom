@@ -64,7 +64,6 @@ public class Animal : MonoBehaviour
             _currentLifeSpan--;
             if (_currentLifeSpan == 0)
             {
-                CurrentTile.ReplenishGrass();
                 Die();
             }
         }
